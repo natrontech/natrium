@@ -14,8 +14,7 @@ func GetTotalPods() (string, error) {
 		if err != nil {
 			return "", err
 		}
-		var totalPods int
-		totalPods = len(pods.Items)
+		totalPods := len(pods.Items)
 		return strconv.Itoa(totalPods), nil
 	}
 
