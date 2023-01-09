@@ -39,11 +39,7 @@ func AddHelmRepositoryToClient(helmClient helmclient.Client, repositoryName stri
 		URL:  repositoryURL,
 	}
 
-	if err := helmClient.AddOrUpdateChartRepo(chartRepo); err != nil {
-		return err
-	}
-
-	return nil
+	return helmClient.AddOrUpdateChartRepo(chartRepo)
 }
 
 func CreateOrUpdateHelmRelease(helmClient helmclient.Client, chartName string, releaseName string, namespace string, version string, valuesYaml string) (*release.Release, error) {
@@ -58,11 +54,11 @@ func CreateOrUpdateHelmRelease(helmClient helmclient.Client, chartName string, r
 		ValuesYaml:      valuesYaml,
 	}
 
-	if release, err := helmClient.InstallOrUpgradeChart(context.Background(), &chartSpec, nil); err != nil {
+	release, err := helmClient.InstallOrUpgradeChart(context.Background(), &chartSpec, nil)
+	if err != nil {
 		return nil, err
-	} else {
-		return release, nil
 	}
+	return release, nil
 }
 
 func GetHelmRelease(helmClient helmclient.Client, releaseName string) (*release.Release, error) {
