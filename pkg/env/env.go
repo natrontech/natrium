@@ -9,8 +9,8 @@ var (
 	POCKETBASE_DATA_DIR string
 	// POCKETBASE_ENCRYPTION_KEY is the default encryption key
 	POCKETBASE_ENCRYPTION_KEY string
-	// REPO_DIR is the default repository directory
-	REPO_DIR string
+	// CORS_ORIGIN is the default CORS origin
+	CORS_ORIGIN string
 )
 
 // Init initializes the environment variables
@@ -23,8 +23,8 @@ func Init() error {
 		POCKETBASE_ENCRYPTION_KEY = "POCKETBASE_ENCRYPTION_KEY"
 	}
 
-	if REPO_DIR = os.Getenv("REPO_DIR"); REPO_DIR == "" {
-		REPO_DIR = "tmp/repos"
+	if CORS_ORIGIN = os.Getenv("CORS_ORIGIN"); CORS_ORIGIN == "" {
+		CORS_ORIGIN = "*"
 	}
 
 	return nil

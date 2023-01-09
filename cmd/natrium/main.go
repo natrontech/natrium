@@ -2,10 +2,12 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/natrongmbh/natrium/pkg/config"
 	"github.com/natrongmbh/natrium/pkg/controllers"
 	"github.com/natrongmbh/natrium/pkg/env"
+	"github.com/natrongmbh/natrium/pkg/k8s"
 	"github.com/natrongmbh/natrium/pkg/server"
 	"github.com/natrongmbh/natrium/pkg/util"
 )
@@ -24,6 +26,11 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	err = k8s.Init(os.Getenv("LOCAL") == "true")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
 
 func main() {
