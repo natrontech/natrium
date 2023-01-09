@@ -76,6 +76,19 @@ func InitCollections() {
 					"system": false,
 					"schema": [
 							{
+									"id": "6mtd0gvl",
+									"name": "user",
+									"type": "relation",
+									"system": false,
+									"required": false,
+									"unique": false,
+									"options": {
+											"maxSelect": 1,
+											"collectionId": "_pb_users_auth_",
+											"cascadeDelete": false
+									}
+							},
+							{
 									"id": "khuj1f6l",
 									"name": "name",
 									"type": "text",
@@ -89,16 +102,73 @@ func InitCollections() {
 									}
 							},
 							{
-									"id": "6mtd0gvl",
-									"name": "user",
-									"type": "relation",
+									"id": "pyndqytd",
+									"name": "type",
+									"type": "select",
 									"system": false,
-									"required": false,
+									"required": true,
 									"unique": false,
 									"options": {
 											"maxSelect": 1,
-											"collectionId": "_pb_users_auth_",
-											"cascadeDelete": false
+											"values": [
+													"NORMAL",
+													"DEDICATED",
+													"GPU"
+											]
+									}
+							},
+							{
+									"id": "nx4eva63",
+									"name": "cpu",
+									"type": "number",
+									"system": false,
+									"required": true,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null
+									}
+							},
+							{
+									"id": "zzqpe1jh",
+									"name": "memory",
+									"type": "number",
+									"system": false,
+									"required": true,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null
+									}
+							},
+							{
+									"id": "rfprhk9g",
+									"name": "storage",
+									"type": "text",
+									"system": false,
+									"required": true,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null,
+											"pattern": ""
+									}
+							},
+							{
+									"id": "aipvrkv1",
+									"name": "status",
+									"type": "select",
+									"system": false,
+									"required": true,
+									"unique": false,
+									"options": {
+											"maxSelect": 1,
+											"values": [
+													"PENDING",
+													"RUNNING",
+													"SYNCING",
+													"ERROR"
+											]
 									}
 							}
 					],
