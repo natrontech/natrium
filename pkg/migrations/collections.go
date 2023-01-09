@@ -178,6 +178,59 @@ func InitCollections() {
 					"updateRule": "@request.auth.id != \"\"",
 					"deleteRule": "@request.auth.id != \"\" ",
 					"options": {}
+			},
+			{
+					"id": "5e9ytvgbd02igg3",
+					"name": "charts",
+					"type": "base",
+					"system": false,
+					"schema": [
+							{
+									"id": "gjf4dtmy",
+									"name": "name",
+									"type": "text",
+									"system": false,
+									"required": true,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null,
+											"pattern": ""
+									}
+							},
+							{
+									"id": "qj4mynpe",
+									"name": "description",
+									"type": "text",
+									"system": false,
+									"required": false,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null,
+											"pattern": ""
+									}
+							},
+							{
+									"id": "grsokckg",
+									"name": "default_values",
+									"type": "text",
+									"system": false,
+									"required": false,
+									"unique": false,
+									"options": {
+											"min": null,
+											"max": null,
+											"pattern": ""
+									}
+							}
+					],
+					"listRule": null,
+					"viewRule": null,
+					"createRule": null,
+					"updateRule": null,
+					"deleteRule": null,
+					"options": {}
 			}
 	]`
 
