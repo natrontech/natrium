@@ -15,7 +15,7 @@ func Setup() error {
 	migrations.InitCollections()
 
 	// initialize pocketbase server
-	App = pocketbase.NewWithConfig(pocketbase.Config{
+	App = pocketbase.NewWithConfig(&pocketbase.Config{
 		DefaultDataDir:       env.POCKETBASE_DATA_DIR,
 		DefaultEncryptionEnv: env.POCKETBASE_ENCRYPTION_KEY,
 	})
