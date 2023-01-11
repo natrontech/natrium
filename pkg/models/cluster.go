@@ -7,6 +7,7 @@ import (
 )
 
 var ClusterStatus = newClusterStatus()
+var ClusterType = newClusterType()
 
 func newClusterStatus() *clusterStatusRegistry {
 	return &clusterStatusRegistry{
@@ -24,13 +25,31 @@ type clusterStatusRegistry struct {
 	ERROR   string
 }
 
+func newClusterType() *clusterTypeRegistry {
+	return &clusterTypeRegistry{
+		NORMAL:    "NORMAL",
+		DEDICATED: "DEDICATED",
+		GPU:       "GPU",
+	}
+}
+
+type clusterTypeRegistry struct {
+	NORMAL    string
+	DEDICATED string
+	GPU       string
+}
+
 var _ models.Model = (*Cluster)(nil)
 
 type Cluster struct {
 	models.BaseModel
 
-	Name   string `json:"name"`
-	UserID string `json:"user_id"`
+	Name    string `json:"name"`
+	Type    string `json:"type"`
+	CPU     int    `json:"cpu"`     // number of cores
+	Memory  int    `json:"memory"`  // in GB
+	Storage int    `json:"storage"` // in GB
+	Status  string `json:"status"`
 }
 
 func (r *Cluster) TableName() string {

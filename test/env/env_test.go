@@ -18,7 +18,6 @@ func TestInit(t *testing.T) {
 			env: map[string]string{
 				"POCKETBASE_DATA_DIR":       "/tmp/pb_data",
 				"POCKETBASE_ENCRYPTION_KEY": "POCKETBASE_ENCRYPTION_KEY",
-				"REPO_DIR":                  "tmp/repos",
 			},
 		},
 		{
@@ -26,7 +25,6 @@ func TestInit(t *testing.T) {
 			env: map[string]string{
 				"POCKETBASE_DATA_DIR":       "",
 				"POCKETBASE_ENCRYPTION_KEY": "",
-				"REPO_DIR":                  "",
 			},
 		},
 	}
@@ -51,10 +49,6 @@ func TestInit(t *testing.T) {
 
 			if env.POCKETBASE_ENCRYPTION_KEY != test.env["POCKETBASE_ENCRYPTION_KEY"] && env.POCKETBASE_ENCRYPTION_KEY != "POCKETBASE_ENCRYPTION_KEY" {
 				t.Errorf("Expected POCKETBASE_ENCRYPTION_KEY to be %s, got %s", test.env["POCKETBASE_ENCRYPTION_KEY"], env.POCKETBASE_ENCRYPTION_KEY)
-			}
-
-			if env.REPO_DIR != test.env["REPO_DIR"] && env.REPO_DIR != "tmp/repos" {
-				t.Errorf("Expected REPO_DIR to be %s, got %s", test.env["REPO_DIR"], env.REPO_DIR)
 			}
 		})
 	}
