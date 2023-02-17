@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms';
-	import { currentUser, pb } from '$lib/pocketbase';
 	import '../app.css';
-</script>
+	import { Toaster } from 'svelte-french-toast';
 
-{#if $currentUser}
+</script>
+<Toaster />
+<slot />
+<!-- {#if $currentUser}
 	<div class="navbar bg-base-100">
 		<div class="navbar-start">
 			<div class="dropdown">
@@ -92,6 +94,6 @@
 	<div class="max-w-xl mx-auto py-8 px-4">
 		<slot />
 	</div>
-{/if}
-
-<slot />
+{:else}
+	<slot />
+{/if} -->

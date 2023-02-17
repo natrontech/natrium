@@ -1,24 +1,25 @@
-import { pb } from '$lib/pocketbase';
+import PocketBase from 'pocketbase';
 import type { Handle } from '@sveltejs/kit';
+import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
+import { serializeNonPOJOs } from '$lib/utils';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	// before
-	pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
-	if (pb.authStore.isValid) {
-		try {
-			await pb.collection('users').authRefresh();
-		} catch (_) {
-			pb.authStore.clear();
-		}
-	}
+	event.locals.pb = new PocketBase(PUBLIC_POCKETBASE_URL);
+	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
-	event.locals.pb = pb;
-	event.locals.user = structuredClone(pb.authStore.model);
+	try {
+		if (event.locals.pb.authStore.isValid) {
+			await event.locals.pb.collection('users').authRefresh();
+			event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
+		}
+	} catch (_) {
+		event.locals.pb.authStore.clear();
+		event.locals.user = null;
+	}
 
 	const response = await resolve(event);
 
-	// after
-	response.headers.set('set-cookie', pb.authStore.exportToCookie({ httpOnly: false }));
+	response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: false }));
 
 	return response;
 };

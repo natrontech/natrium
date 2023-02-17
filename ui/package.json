@@ -42,8 +42,11 @@
 		"@macfja/svelte-multi-adapter": "^1.0.2",
 		"@sveltejs/adapter-node": "^1.0.0",
 		"@sveltejs/adapter-static": "^1.0.0",
+		"@zerodevx/svelte-toast": "1.0.0-rc.1",
 		"daisyui": "^2.50.1",
 		"dotenv": "^16.0.3",
-		"pocketbase": "^0.10.2"
+		"pocketbase": "^0.10.2",
+		"svelte-french-toast": "^1.0.3",
+		"zod": "^3.20.6"
 	}
 }
