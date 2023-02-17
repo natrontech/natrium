@@ -1,42 +1,20 @@
-# stage build
-FROM node:18.11-alpine as build
+FROM node:lts-slim as build
 
 WORKDIR /app
 
-# copy everything to the container
+COPY package*.json ./
+RUN rm -rf node_modules
+RUN rm -rf build
 COPY . .
-
-# clean install all dependencies
-RUN npm ci
-
-# remove potential security issues
-RUN npm audit fix
-
-# build SvelteKit app
+RUN npm install
 RUN npm run build
 
-# stage run
-FROM node:18.11-alpine
+FROM node:lts-slim as run
 
 WORKDIR /app
-
-# create a non-root user and group
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-# copy dependency list
-COPY --from=build /app/package*.json ./
-
-# clean install dependencies, no devDependencies, no prepare script
-RUN npm ci --production --ignore-scripts
-
-# remove potential security issues
-RUN npm audit fix
-
-# copy built SvelteKit app to /app
-COPY --from=build /app/build ./
-
-RUN chown -R appuser:appgroup /app
-USER appuser
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/build ./build
+RUN npm install --production
 
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+ENTRYPOINT [ "npm", "run", "start" ]
