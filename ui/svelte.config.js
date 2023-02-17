@@ -1,22 +1,19 @@
-import adapter from '@sveltejs/adapter-node';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from "@sveltejs/adapter-auto";
+import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: vitePreprocess(),
-	server: {
-		port: 3000
-	},
-	envPrefix: 'NATRIUM_',
+	preprocess: [
+		preprocess({
+			postcss: true,
+		}),
+	],
+
 	kit: {
-		adapter: adapter({
-			out: 'build',
-			precompress: false,
-			envPrefix: 'NATRIUM_'
-		})
-	}
+		adapter: adapter(),
+	},
 };
 
 export default config;
