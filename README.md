@@ -9,10 +9,10 @@
 
 <p align="center">
   <strong>
-    A Kubernetes <br />
+    A Kubernetes self-service <br />
     <a href="https://natron.cloud">platform</a>
     <br />
-    hosted by <a href="https://natron.io">Natron</a>
+    developed by <a href="https://natron.io">Natron</a>
   </strong>
 </p>
 
@@ -32,7 +32,7 @@
 </p>
 
 <p align="center">
-  Natrium allowes you to get a new Kubernetes within seconds in the <a href="https://natron.cloud">Natron Cloud</a> :rocket:
+  Natrium allowes you to get your application up and running within seconds on a Kubernetes cluster :rocket:
 </p>
 
 <p align="center">
@@ -53,7 +53,7 @@ Kubernetes: The Most Comprehensive and Scalable Cloud Platform for Your Business
 
 ### Getting started
 
-Create an account on [Natron Cloud](https://natron.cloud) and create a new cluster.
+*tbd*
 
 ### Open Source
 
