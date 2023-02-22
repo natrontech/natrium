@@ -1,7 +1,8 @@
-import { redirect, type Actions } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
 export const actions: Actions = {
-	default: async ({ locals, request }: any) => {
+	default: async ({ locals, request }) => {
 		const data = Object.fromEntries(await request.formData()) as {
 			email: string;
 			password: string;

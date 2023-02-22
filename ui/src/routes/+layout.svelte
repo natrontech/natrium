@@ -1,99 +1,41 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
-	import '../app.css';
-	import { Toaster } from 'svelte-french-toast';
-
+  import { applyAction, enhance } from '$app/forms'
+  import { currentUser, pb } from '$lib/pocketbase'
+  import '../app.postcss'
 </script>
-<Toaster />
-<slot />
-<!-- {#if $currentUser}
-	<div class="navbar bg-base-100">
-		<div class="navbar-start">
-			<div class="dropdown">
-				<label tabindex="0" class="btn btn-ghost btn-circle">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-5 w-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h7"
-						/></svg
-					>
-				</label>
-				<ul
-					tabindex="0"
-					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-				>
-					<li><a>Homepage</a></li>
-					<li><a>Portfolio</a></li>
-					<li><a>About</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="navbar-center">
-			<a class="btn btn-ghost normal-case text-xl" href="/">Natrium</a>
-		</div>
-		<div class="navbar-end">
-			<button class="btn btn-ghost btn-circle">
-				<div class="indicator">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-5 w-5"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-						/></svg
-					>
-					<span class="badge badge-xs badge-primary indicator-item" />
-				</div>
-			</button>
-			<div class="flex-none gap-2">
-				<div class="dropdown dropdown-end">
-					<label tabindex="0" class="btn btn-ghost btn-circle avatar">
-						<div class="w-10 rounded-full">
-							<img src="/images/janlauber.jpeg" />
-						</div>
-					</label>
-					<ul
-						tabindex="0"
-						class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-					>
-						<li><a>Profile</a></li>
-						<li><a>Settings</a></li>
 
-						<form
-							method="POST"
-							action="/logout"
-							use:enhance={() => {
-								return async ({ result }) => {
-									pb.authStore.clear();
-									await applyAction(result);
-								};
-							}}
-						>
-							<li>
-								<button>Log out</button>
-							</li>
-						</form>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="bg-neutral text-neutral-content">
+  <div class="max-w-xl mx-auto navbar">
+    <div class="navbar-start">
+      <a href="/" class="btn btn-ghost text-xl">PB + SK</a>
+    </div>
+    <div class="navbar-end">
+      <ul class="menu menu-horizontal">
+        {#if $currentUser}
+          <li><a href="/">{$currentUser.email}</a></li>
+          <li>
+            <form
+              method="POST"
+              action="/logout"
+              use:enhance={() => {
+                return async ({ result }) => {
+                  pb.authStore.clear()
+                  await applyAction(result)
+                }
+              }}
+            >
+              <button>Log out</button>
+            </form>
+          </li>
+        {:else}
+          <li><a href="/login">Log in</a></li>
+          <li><a href="/register">Register</a></li>
+        {/if}
+      </ul>
+    </div>
+  </div>
+</div>
 
-	<div class="max-w-xl mx-auto py-8 px-4">
-		<slot />
-	</div>
-{:else}
-	<slot />
-{/if} -->
+<div class="max-w-xl mx-auto py-8 px-4">
+  <slot />
+</div>

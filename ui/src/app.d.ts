@@ -2,10 +2,7 @@
 // for information about these interfaces
 // and what to do when importing types
 declare namespace App {
-	interface Error {
-		code: string;
-		id: string;
-	}
+	// interface Error {}
 	interface Locals {
 		pb: import('pocketbase').default;
 		user: import('pocketbase').default['authStore']['model'];
