@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { applyAction, enhance } from '$app/forms'
-  import { currentUser, pb } from '$lib/pocketbase'
+  // import { applyAction, enhance } from '$app/forms'
+  // import { currentUser, pb } from '$lib/pocketbase'
   import '../app.postcss'
+  import Nav from '$lib/components/base/Nav.svelte'
 </script>
 
-<div class="bg-neutral text-neutral-content">
+<!-- <div class="bg-neutral text-neutral-content">
   <div class="max-w-xl mx-auto navbar">
     <div class="navbar-start">
       <a href="/" class="btn btn-ghost text-xl">PB + SK</a>
@@ -34,8 +35,10 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="max-w-xl mx-auto py-8 px-4">
+<div class="min-h-full">
+  <Nav />
+
   <slot />
 </div>
