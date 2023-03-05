@@ -1,4 +1,8 @@
-<script>
+<script lang="ts">
+  import Card from "$lib/components/base/Card.svelte";
 </script>
 
-<h1 class="text-xl">Welcome to Natrium</h1>
+<template>
+  <Card>
+  </Card>
+</template>
